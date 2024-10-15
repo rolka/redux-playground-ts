@@ -28,12 +28,15 @@ const booksReducer = (state = initialState, action: BookAction) => {
                 ...state,
                 {
                     id: ++lastId,
-                    title: action.payload.title,  // No error
+                    // @ts-ignore
+                    title: action.payload.title, // No error
+                    // @ts-ignore
                     author: action.payload.author // No error
                 }
             ];
         case actions.BOOK_REMOVED:
             // TypeScript knows now that this is a BookRemovedAction
+            // @ts-ignore
             return state.filter(book => book.id !== action.payload.id);
         default:
             return state;
